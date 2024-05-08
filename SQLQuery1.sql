@@ -1,4 +1,4 @@
------------------------------tables-------------------------
+-- tables --
 
 CREATE TABLE user_table (
 	user_id INT PRIMARY KEY,
@@ -48,17 +48,27 @@ CREATE TABLE view_table (
 );
 
 
----------------------procedures-----------------------
+-- procedures --
 
-CREATE PROCEDURE sp_login
-    @username VARCHAR(50),
-    @password VARCHAR(50)
+
+CREATE PROCEDURE sp_update_admin_status
+    @isAdmin VARCHAR(5),
+    @user_id INT
 AS
 BEGIN
-    SELECT * FROM user_table 
-	WHERE username = @username AND password = @password;
+    UPDATE user_table
+    SET isAdmin = @isAdmin
+    WHERE user_id = @user_id;
 END;
 
+
+CREATE PROCEDURE sp_delete_user
+    @user_id INT
+AS
+BEGIN
+    DELETE FROM user_table
+    WHERE user_id = @user_id;
+END;
 
 
 CREATE PROCEDURE sp_insert_to_register	
@@ -87,6 +97,32 @@ END;
 
 
 ---------------------functions-----------------------
+
+CREATE FUNCTION func_login (
+	@username VARCHAR(50), 
+	@password VARCHAR(50)
+)
+RETURNS TABLE
+AS
+RETURN
+(
+    SELECT * FROM user_table 
+    WHERE username = @username AND password = @password
+);
+
+
+CREATE FUNCTION get_accept_data(
+	@meterNo VARCHAR(20), 
+	@fileNo VARCHAR(20)
+)
+RETURNS table
+AS
+RETURN (
+    SELECT * FROM accept_table WHERE meter_no = @meterNo OR file_no = @fileNo
+);
+
+
+
 ---------------------triggers-----------------------
 
 CREATE TRIGGER insert_to_view 

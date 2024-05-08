@@ -379,7 +379,8 @@
                     $meterno = $_POST["meterNo"];
                     $fileno = $_POST["fileNo"];
                 
-                    $sql = "SELECT * FROM accept_table WHERE meter_no = ? OR file_no = ?";
+                    // $sql = "SELECT * FROM accept_table WHERE meter_no = ? OR file_no = ?";
+                    $sql = "SELECT get_accept_data(?, ?)";
                     $params = array($meterno, $fileno);
                 
                     $stmt = sqlsrv_query($conn, $sql, $params);

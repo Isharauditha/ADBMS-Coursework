@@ -57,7 +57,7 @@
         $username = $_POST["username"];
         $password = $_POST["password"];
 
-        $sql = "EXEC sp_login @username = ?, @password = ?";
+        $sql = "SELECT * from func_login(?, ?)";
         
         $params = array($username, $password);
         $stmt = sqlsrv_query($conn, $sql, $params);

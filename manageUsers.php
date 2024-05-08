@@ -175,7 +175,10 @@
                     $userId = $_POST['user_id'];
                     $newRole = $_POST['new_role'];
                 
-                    $updateSql = "UPDATE user_table SET isAdmin = ? WHERE user_id = ?";
+                    // $updateSql = "UPDATE user_table SET isAdmin = ? WHERE user_id = ?";
+                    $updateSql = "EXEC sp_update_admin_status @isAdmin = ?, @user_id = ?";
+
+
                     $params = array($newRole, $userId);
                     $stmt = sqlsrv_query($conn, $updateSql, $params);
                 
@@ -189,8 +192,9 @@
                 if(isset($_POST['delete_user'])) {
                     $userIdToDelete = $_POST['user_id'];
                     
-                    // Perform the delete operation
-                    $deleteSql = "DELETE FROM user_table WHERE user_id = ?";
+                    // $deleteSql = "DELETE FROM user_table WHERE user_id = ?";
+                    $deleteSql = "EXEC sp_delete_user @user_id = ?";
+                    
                     $deleteParams = array($userIdToDelete);
                     $deleteStmt = sqlsrv_query($conn, $deleteSql, $deleteParams);
                     
