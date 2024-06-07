@@ -43,13 +43,13 @@
             position: absolute;
             display: flex;
             flex-direction: row;
-            left: 75%;
+            left: 70%;
             top: 38%;
         }
         
         a{
             color:black;
-            padding-right: 30px;
+            padding-right: 20px;
             text-decoration: none;
             font-size: 18px;
         }
@@ -87,6 +87,10 @@
         td{
             padding-right: 40px;
             padding-top: 5px;
+        }
+
+        .view-table th{
+            background-color: rgba(0, 86, 179, 0.4); 
         }
 
         .input-data{
@@ -355,6 +359,7 @@
             <div class="navbar">
                 <a href="adminHomePage.php" class="nav-link">Home</a>
                 <a href="manageUsers.php" class="nav-link">Manage Users</a>
+                <a href="overview.php" class="nav-link">Overview</a>
                 <a href="index.php" class="nav-link logout">Log Out</a>
             </div>
         </div>
