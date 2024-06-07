@@ -381,6 +381,15 @@
                 if ($stmt_insert === false) {
                     die(print_r(sqlsrv_errors(), true));
                 }
+
+                $sql_delete_view = "DELETE FROM view_table WHERE fileNo = ?";
+                $params_delete_view = array($fileNo);
+                $stmt_delete_view = sqlsrv_query($conn, $sql_delete_view, $params_delete_view);
+
+                if ($stmt_delete_view === false) {
+                    die(print_r(sqlsrv_errors(), true));
+                }
+
             }
 
             sqlsrv_free_stmt($stmt_select);

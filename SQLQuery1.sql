@@ -1,7 +1,7 @@
 -- tables --
 
 CREATE TABLE user_table (
-	user_id INT PRIMARY KEY,
+	user_id INT IDENTITY(1,1) PRIMARY KEY,
 	name VARCHAR(50),
 	nic VARCHAR(12),
 	username VARCHAR(50),
@@ -49,6 +49,22 @@ CREATE TABLE view_table (
 
 
 -- procedures --
+
+
+CREATE PROCEDURE sp_insert_to_user_table	
+	@name VARCHAR(50),
+	@nic VARCHAR(12),
+	@username VARCHAR(50),
+	@password VARCHAR(50),
+	@isAdmin VARCHAR(5)	
+AS
+BEGIN
+    INSERT INTO user_table (name, nic, username, password, isAdmin)
+	VALUES (
+		@name, @nic, @username, @password, @isAdmin	
+	);
+END;
+
 
 
 CREATE PROCEDURE sp_update_admin_status

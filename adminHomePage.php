@@ -338,6 +338,10 @@
             font-size: 30px;
             font-weight: bold;
         }
+
+        .hidden {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -380,7 +384,7 @@
                     $fileno = $_POST["fileNo"];
                 
                     // $sql = "SELECT * FROM accept_table WHERE meter_no = ? OR file_no = ?";
-                    $sql = "SELECT get_accept_data(?, ?)";
+                    $sql = "SELECT * from get_accept_data(?, ?)";
                     $params = array($meterno, $fileno);
                 
                     $stmt = sqlsrv_query($conn, $sql, $params);
@@ -435,7 +439,7 @@
                 }
             ?>
 
-            <div class="table-title">
+            <div class="table-title <?php echo $searchButtonClicked ? 'hidden' : ''; ?>">
                     Approvals
             </div>
 
